@@ -13,6 +13,8 @@ public:
     player(uint8_t id);
     ~player();
 
+    static const uint8_t PLAYER_1 = 0;
+    static const uint8_t PLAYER_2 = 1;
 
     std::string getName() const;
     void setName(const std::string &value);
@@ -23,9 +25,10 @@ public:
     uint16_t getPoints() const;
     void incrementPoints(const uint16_t &value);
 
-    friend uint8_t whoseTurn();//in game.cpp
-    friend void changeTurn();//in game.cpp
-    friend void setLastMove(std::weak_ptr<player> pplayer, const uint8_t& row, const uint8_t &col);//in game.cpp
+    friend class game;
+//    friend uint8_t whoseTurn();//in game.cpp
+//    friend void changeTurn();//in game.cpp
+//    friend void setLastMove(std::weak_ptr<player> pplayer, const uint8_t& row, const uint8_t &col);//in game.cpp
 
     char getCharacter() const;
     uint8_t getLastRow() const;
@@ -35,8 +38,6 @@ public:
 private:
     static uint8_t numOfPlayers;
     static bool isPlayer1;
-    const uint8_t PLAYER_1 = 1;
-    const uint8_t PLAYER_2 = 2;
     std::string name;
     uint32_t color;
     uint16_t points;

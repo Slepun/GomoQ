@@ -9,7 +9,7 @@ public:
     ~gameSingle();
 
 private:
-    bool makeMove() override;
+    //bool makeMove() override;
 };
 
 #endif // GAMESINGLE_H

@@ -11,6 +11,7 @@ public:
     typedef  void (mainMenu::*menuChoiceFnP)(void);//ptr to fcn
 
     mainMenu();
+    mainMenu(std::map<int, std::string>&);
     mainMenu(mainMenu&& object);
     mainMenu& operator=(mainMenu&& object);
     virtual ~mainMenu();

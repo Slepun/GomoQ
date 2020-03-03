@@ -30,18 +30,24 @@ public:
 
     void execute() override;
 
-private:
+
+
+protected:
     board mBoard;
     vector<std::shared_ptr<player>> mPlayers;
 
-
-
     sCheckDir mCheckDir;
-    //uint8_t whoseTurn();
-    //uint8_t changeTurn();
+
+//Player Friend FCNs
+    virtual uint8_t whoseTurn();
+    void changeTurn();
+    void setLastMove(std::weak_ptr<player> pplayer, const uint8_t& row, const uint8_t &col);//in game.cpp
 
 protected:
+    virtual void init();
     virtual bool makeMove();
+    virtual bool myTurn();
+    virtual void  waitForPlayer();
 
 private:
     bool sameArround(const char &ch, const sMove &);

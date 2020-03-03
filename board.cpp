@@ -24,6 +24,7 @@ void board::putChar(char character, uint8_t row, uint8_t col)
     if( (character == 'O' || character == 'X' || character == '#') && (row < ROWS) && (col < COLS))
     {
         mBoard[row][col] = character; //TODO check if not occupied
+
     }
 }
 

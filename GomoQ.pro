@@ -1,4 +1,5 @@
 QT -= gui
+QT += network
 
 CONFIG += c++14 console
 CONFIG -= app_bundle
@@ -18,12 +19,11 @@ SOURCES += \
         board.cpp \
         consoleview.cpp \
         game.cpp \
-        gamelogic.cpp \
         gamemulti.cpp \
         gamesingle.cpp \
         main.cpp \
         mainmenu.cpp \
-        multiplayer/clientsocket.cpp \
+        multiplayer/clientserver.cpp \
         player.cpp \
         settings.cpp \
         userinput.cpp
@@ -37,11 +37,12 @@ HEADERS += \
     board.h \
     consoleview.h \
     game.h \
-    gamelogic.h \
     gamemulti.h \
     gamesingle.h \
     mainmenu.h \
-    multiplayer/clientsocket.h \
+    multiplayer/clientserver.h \
     player.h \
     settings.h \
     userinput.h
+
+LIBS += -lws2_32

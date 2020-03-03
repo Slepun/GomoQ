@@ -4,7 +4,6 @@ bool player::isPlayer1 = true;
 
 player::player()
 {
-    numOfPlayers++;
     if(numOfPlayers == PLAYER_1)
     {
         name = "Player1";

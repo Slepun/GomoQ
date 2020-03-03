@@ -26,25 +26,33 @@ game::~game()
 void game::execute()
 {
     cout << "Execute game..." << endl;
-
+    init();
     do{
         //cout << "a shared pointers: " << mPlayers[0].use_count() << " " << mPlayers[1].use_count() << endl;
         //cout << "b shared pointers: " << mPlayers[0].use_count() << " " << mPlayers[1].use_count() << endl;
         mBoard.print();
-        while(!makeMove()){};
-        if(!win())
+        if(myTurn())
         {
-            changeTurn();
+            while(!makeMove()){};
+            if(win())
+            {
+                mBoard.print();
+                reset();
+                cout << "KONIEC";
+            }
         }
         else
         {
-            mBoard.print();
-            reset();
-            cout << "KONIEC";
-            system("pause");
+            waitForPlayer();
         }
-
+        changeTurn();
     }while(true);
+
+}
+
+void game::init()
+{
+    //Do nothing
 }
 
 
@@ -92,6 +100,16 @@ bool game::makeMove()
     }
 
     return fRetVal;
+}
+
+bool game::myTurn()
+{
+    return true;
+}
+
+void game::waitForPlayer()
+{
+
 }
 
 bool game::sameArround(const char &ch, const sMove &move)
@@ -258,22 +276,23 @@ void game::reset()
 /*************************************/
 /*          FRIEND FCNs              */
 /*************************************/
-uint8_t whoseTurn()
+uint8_t game::whoseTurn()
 {
-    uint8_t u8RetVal = 0;//player1
+    uint8_t activePlayer = player::PLAYER_1;//player1
     if(!player::isPlayer1)
     {
-        u8RetVal = 1;//player2
+        activePlayer =  player::PLAYER_1;//player2
     }
-    return u8RetVal;
+    //cout << "game WhoseTurn turn" << (int)activePlayer <<endl;
+    return activePlayer;
 }
 
-void changeTurn()
+void game::changeTurn()
 {
     player::isPlayer1 = !player::isPlayer1;
 }
 
-void setLastMove(weak_ptr<player> pplayer, const uint8_t& row, const uint8_t &col)
+void game::setLastMove(weak_ptr<player> pplayer, const uint8_t& row, const uint8_t &col)
 {
     auto p = pplayer.lock();
     if(p)

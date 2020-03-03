@@ -14,8 +14,9 @@ sMove userInput::getRowCol()
 {
     sMove move;
     string input;
-    std::flush(cout);
-    getline(cin, input);
+
+    while (input.length()==0 )
+        getline(cin, input);
 
     stringstream ss;
     ss << input;

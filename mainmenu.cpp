@@ -20,6 +20,11 @@ mainMenu::mainMenu()
 
 }
 
+mainMenu::mainMenu(std::map<int, std::string>& options)
+{
+
+}
+
 mainMenu::~mainMenu()
 {
     std::cout << "Destroy mainMenu()" << std::endl;
